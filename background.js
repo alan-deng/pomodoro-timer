@@ -1,11 +1,5 @@
 var tones = {
   chime: "audio/chime.mp3",
-  tone: "audio/tone.mp3",
-  blop: "audio/blop.mp3",
-  watch: "audio/watch.mp3",
-  spoon: "audio/spoon.mp3",
-  ice: "audio/ice.mp3",
-  turkey: "audio/turkey.mp3",
 };
 
 var timerInfo = {
