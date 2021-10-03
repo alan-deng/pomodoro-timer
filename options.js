@@ -1,46 +1,105 @@
-let page = document.getElementById("buttonDiv");
-let selectedClassName = "current";
-const presetButtonColors = ["#3aa757", "#e8453c", "#f9bb2d", "#4688f1"];
-
-// Reacts to a button click by marking the selected button and saving
-// the selection
-function handleButtonClick(event) {
-  // Remove styling from the previously selected color
-  let current = event.target.parentElement.querySelector(
-    `.${selectedClassName}`
-  );
-  if (current && current !== event.target) {
-    current.classList.remove(selectedClassName);
-  }
-
-  // Mark the button as selected
-  let color = event.target.dataset.color;
-  event.target.classList.add(selectedClassName);
-  chrome.storage.sync.set({ color });
-}
-
-// Add a button to the page for each supplied color
-function constructOptions(buttonColors) {
-  chrome.storage.sync.get("color", (data) => {
-    let currentColor = data.color;
-    // For each color we were provided…
-    for (let buttonColor of buttonColors) {
-      // …create a button with that color…
-      let button = document.createElement("button");
-      button.dataset.color = buttonColor;
-      button.style.backgroundColor = buttonColor;
-
-      // …mark the currently selected color…
-      if (buttonColor === currentColor) {
-        button.classList.add(selectedClassName);
-      }
-
-      // …and register a listener for when that button is clicked
-      button.addEventListener("click", handleButtonClick);
-      page.appendChild(button);
+let bgPage = chrome.extension.getBackgroundPage();
+let n = 1;
+chrome.storage.sync.get(
+  {
+    workLength: 1000 * 60 * 1,
+    breakLength: 1000 * 60 * 2,
+    longBreakLength: 1000 * 60 * 2,
+    numWorkIntervals: 4,
+    bannedUrls: [
+      "facebook.com",
+      "youtube.com",
+      "instagram.com",
+      "twitter.com",
+      "tiktok.com",
+      "pininterest.com",
+      "snapchat.com",
+    ],
+  },
+  ({
+    workLength,
+    breakLength,
+    longBreakLength,
+    numWorkIntervals,
+    bannedUrls,
+  }) => {
+    // creates banned urls list in DOM
+    for (const url of bannedUrls) {
+      let newElem = document.createElement("li");
+      newElem.innerHTML = `<input type="text" id='banned-url-${n}' value='${url}'></input>`;
+      document.getElementById("banned-urls-list").append(newElem);
+      n++;
     }
-  });
-}
+    document.getElementById("work-length").setAttribute("value", workLength);
+    document.getElementById("break-length").setAttribute("value", breakLength);
+    document
+      .getElementById("long-break-length")
+      .setAttribute("value", longBreakLength);
+    document
+      .getElementById("num-work-intervals")
+      .setAttribute("value", numWorkIntervals);
+  }
+);
 
-// Initialize the page by constructing the color options
-constructOptions(presetButtonColors);
+document.getElementById("add-banned-url").addEventListener("click", () => {
+  let newElem = document.createElement("li");
+  newElem.innerHTML = `<input type="text" id='banned-url-${n}'></input>`;
+  document.getElementById("banned-urls-list").append(newElem);
+  n++;
+});
+
+// stops form submission, and sets options in chrome.storage
+document.getElementById("options").addEventListener("submit", (e) => {
+  e.preventDefault();
+  let inputList = document.querySelectorAll("input");
+  let workLength = 1,
+    breakLength = 1,
+    longBreakLength = 2,
+    numWorkIntervals = 4,
+    bannedUrls = [];
+  for (input of inputList) {
+    if (input.value) {
+      switch (true) {
+        case input.id === "work-length":
+          workLength = parseFloat(input.value);
+          break;
+        case input.id === "break-length":
+          breakLength = parseFloat(input.value);
+          break;
+        case input.id === "long-break-length":
+          longBreakLength = parseFloat(input.value);
+          break;
+        case input.id === "num-work-intervals":
+          numWorkIntervals = parseFloat(input.value);
+          break;
+        case input.id.includes("banned-url"):
+          const parsedUrl = parseUrlChoice(input.value);
+          bannedUrls.push(parsedUrl);
+          break;
+      }
+    }
+  }
+  chrome.storage.sync.set({
+    workLength,
+    breakLength,
+    longBreakLength,
+    numWorkIntervals,
+    bannedUrls,
+  });
+  bgPage.getUserChoices();
+  closePage();
+});
+const parseUrlChoice = (url) => {
+  const regexp =
+    /(https?:\/\/)?(www\.)?([-a-zA-Z0-9@:%._\+~#=]{2,256}\.)+([a-z]{2,4})\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/i;
+  const regMatchArr = url.match(regexp);
+  //groups 3 and 4 match XYZ.com group 5 matches everything after
+  const noHTTPUrl = regMatchArr[3] + regMatchArr[4] + regMatchArr[5];
+  return "https://www." + noHTTPUrl;
+};
+
+const closePage = () => {
+  chrome.tabs.getCurrent((tab) => {
+    chrome.tabs.remove(tab.id);
+  });
+};

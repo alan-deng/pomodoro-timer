@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="button.css">
+    <link rel="stylesheet" href="options.css" />
     <script src="options.js" defer></script>
   </head>
   <body>
-    <div id="buttonDiv">
-    </div>
-    <div>
-      <p>Choose a different background color!</p>
-    </div>
+    <form id="options">
+      <label>Work Length(min)<input id="work-length" value="1" /></label>
+      <label>Break Length(min)<input id="break-length" value="2" /></label>
+      <label>Long Break Length(min)<input id="long-break-length" value="3" /></label>
+      <label>Work intervals before long break<input id="num-work-intervals" value="4" /></label>
+      <br />
+      <p id="banned-url-list">Banned Urls</p>
+      <ul id="banned-urls-list"></ul>
+      <button type='button' id="add-banned-url">Add Banned Url</button>
+      <input type="submit" value="Make Changes" />
+    </form>
   </body>
-  
 </html>
