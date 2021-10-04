@@ -1,3 +1,23 @@
-#hidden {
+.hidden {
   display: hidden;
+}
+
+body {
+  min-width: 260px;
+}
+
+p {
+  text-align: center;
+}
+
+/* .btn {
+  margin: 0px auto;
+} */
+
+.bg-light {
+  background-color: rgb(240, 240, 240) !important;
+}
+
+.container-fluid {
+  max-width: 90% !important;
 }

@@ -26,7 +26,7 @@ chrome.storage.sync.get(
     // creates banned urls list in DOM
     for (const url of bannedUrls) {
       let newElem = document.createElement("li");
-      newElem.innerHTML = `<input type="text" id='banned-url-${n}' value='${url}'></input>`;
+      newElem.innerHTML = `<input type="text" class="form-control" id='banned-url-${n}' value='${url}'></input>`;
       document.getElementById("banned-urls-list").append(newElem);
       n++;
     }
@@ -43,7 +43,7 @@ chrome.storage.sync.get(
 
 document.getElementById("add-banned-url").addEventListener("click", () => {
   let newElem = document.createElement("li");
-  newElem.innerHTML = `<input type="text" id='banned-url-${n}'></input>`;
+  newElem.innerHTML = `<input type="text" class="form-control" id='banned-url-${n}'></input>`;
   document.getElementById("banned-urls-list").append(newElem);
   n++;
 });

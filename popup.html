@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="popup.css" />
     <script src="popup.js" defer></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="popup.css" defer />
   </head>
   <body>
-    <p id="timer-message">Timer Not Started</p>
-    <p id="timer">0:00</p>
-    <button id="start-timer-button" class="">Start Timer</button>
-    <button id="stop-timer-button" class="hidden">Stop Timer</button>
-    <button id="change-settings-button">Change Settings</button>
+    <div
+      id="main"
+      class="container-fluid bg-light d-flex flex-column my-2 rounded-3"
+    >
+      <div id="timer-div">
+        <p id="timer-message" class="fs-3">Timer Not Started</p>
+        <p id="timer" class="fs-1">0:00</p>
+      </div>
+      <div id="timer-controls" class="dflex flex-row justify-content-center">
+        <button id="start-timer-button" class="btn btn-success">
+          Start Timer
+        </button>
+
+        <button id="stop-timer-button" class="btn btn-danger">
+          Stop Timer
+        </button>
+      </div>
+      <button
+        id="change-settings-button"
+        class="btn btn-secondary mx-auto my-2 d-block"
+      >
+        Change Settings
+      </button>
+    </div>
   </body>
 </html>

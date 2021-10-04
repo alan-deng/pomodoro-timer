@@ -1,11 +1,63 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="options.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
     <script src="options.js" defer></script>
   </head>
   <body>
-    <form id="options">
+    <form id="options" class="container bg-light my-2 rounded-3">
+      <div class="mb-3">
+        <label for="work-length" class="form-label">Work Length (min)</label>
+        <input type="number" class="form-control" id="work-length" step="0.1" />
+        <div class="form-text">How long should each work interval be?</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="break-length" class="form-label">Break Length (min)</label>
+        <input
+          type="number"
+          class="form-control"
+          id="break-length"
+          step="0.1"
+        />
+        <div class="form-text">How long should each break be?</div>
+      </div>
+      <div class="mb-3">
+        <label for="long-break-length" class="form-label"
+          >Long Break Length (min)</label
+        >
+        <input
+          type="number"
+          class="form-control"
+          id="long-break-length"
+          step="0.1"
+        />
+        <div class="form-text">How long should each extended break be?</div>
+      </div>
+      <div class="mb-3">
+        <label for="num-work-intervals" class="form-label"
+          >Work intervals before long break</label
+        >
+        <input type="number" class="form-control" id="num-work-intervals" />
+        <div class="form-text">
+          How many work intervals before a long break?
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="banned-urls-list" class="form-label">Banned URLs</label>
+        <ul id="banned-urls-list"></ul>
+        <button type="button" class="btn btn-secondary" id="add-banned-url">
+          Add Banned Url
+        </button>
+      </div>
+      <button type="submit" class="btn btn-primary">Make Changes</button>
+    </form>
+    <!-- <form id="options">
       <label>Work Length(min)<input id="work-length" value="1" /></label>
       <label>Break Length(min)<input id="break-length" value="2" /></label>
       <label>Long Break Length(min)<input id="long-break-length" value="3" /></label>
@@ -15,7 +67,11 @@
       <ul id="banned-urls-list"></ul>
       <button type='button' id="add-banned-url">Add Banned Url</button>
       <input type="submit" value="Make Changes" />
-    </form>
-    <div id='footer'>Extension Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    </form> -->
+    <div id="footer">
+      Extension Icons made by
+      <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
+      <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+    </div>
   </body>
 </html>
