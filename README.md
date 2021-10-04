@@ -22,6 +22,11 @@ Bootstrap, Javascript, HTML, CSS
 -------------------------------
 ### `Images`
 
+Chrome Popup\
+![image](https://user-images.githubusercontent.com/32584355/135815569-7bc98ad1-8b35-4d40-a40f-06b031483140.png)
+
+Settings Page
+![image](https://user-images.githubusercontent.com/32584355/135815769-9eb420e7-e5d9-4da8-9075-b7667fd15ea1.png)
 
 -------------------------------
 ### `Planned Features`
