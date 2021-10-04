@@ -2,18 +2,18 @@ let bgPage = chrome.extension.getBackgroundPage();
 let n = 1;
 chrome.storage.sync.get(
   {
-    workLength: 1000 * 60 * 1,
-    breakLength: 1000 * 60 * 2,
-    longBreakLength: 1000 * 60 * 2,
+    workLength: 25,
+    breakLength: 5,
+    longBreakLength: 15,
     numWorkIntervals: 4,
     bannedUrls: [
-      "facebook.com",
-      "youtube.com",
-      "instagram.com",
-      "twitter.com",
-      "tiktok.com",
-      "pininterest.com",
-      "snapchat.com",
+      "https://www.facebook.com",
+      "https://www.youtube.com",
+      "https://www.instagram.com",
+      "https://www.twitter.com",
+      "https://www.tiktok.com",
+      "https://www.pininterest.com",
+      "https://www.snapchat.com",
     ],
   },
   ({
