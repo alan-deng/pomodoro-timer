@@ -1,6 +1,6 @@
 {
   "name": "Pomodoro Timer",
-  "description": "A lightweight pomodoro timer to keep you productive! Automatically blocks blacklisted websites during your work time, to keep you productive.",
+  "description": "A lightweight pomodoro timer to keep you productive! Automatically blocks blacklisted websites during your work time",
   "version": "1.0",
   "manifest_version": 2,
   "background": {
