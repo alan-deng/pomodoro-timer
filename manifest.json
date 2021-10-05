@@ -8,9 +8,7 @@
   },
   "permissions": [
     "storage",
-    "activeTab",
     "tabs",
-    "notifications",
     "http://*/*",
     "https://*/*"
   ],
