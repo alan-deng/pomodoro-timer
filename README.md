@@ -12,7 +12,7 @@
 -------------------------------
 ### `Install Instructions`
 
-App currently awaiting approval from Google Web Store - link soon!
+You can download the app on the chrome store [here](https://chrome.google.com/webstore/detail/pomodoro-timer/gjcgmlkfhkflecoglmbkfiojhkkgeijl?hl=en&authuser=0)
 
 -------------------------------
 ### `Technologies`
